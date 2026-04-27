@@ -1,0 +1,92 @@
+---
+const baseUrl = import.meta.env.BASE_URL || '/';
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-grid">
+      <div class="footer-section">
+        <h4 data-i18n="footer.dojo_title">WTA Hochburg-Ach</h4>
+        <ul>
+          <li><a href={`${baseUrl}ueber-uns`} data-i18n="nav.about">Über uns</a></li>
+          <li><a href={`${baseUrl}training`} data-i18n="nav.training">Training</a></li>
+          <li><a href={`${baseUrl}trainingsplan`} data-i18n="nav.schedule">Trainingsplan</a></li>
+          <li><a href={`${baseUrl}kontakt`} data-i18n="nav.contact">Kontakt</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h4 data-i18n="footer.updates_title">Aktuelles</h4>
+        <ul>
+          <li><a href={`${baseUrl}news`} data-i18n="footer.news_and_events">Aktuelles & Termine</a></li>
+          <li><a href={`${baseUrl}termine`} data-i18n="footer.event_overview">Terminübersicht</a></li>
+          <li><a href={`${baseUrl}foto-galerie`} data-i18n="nav.gallery">Galerie</a></li>
+          <li><a href={`${baseUrl}legal`} data-i18n="footer.legal_and_privacy">Impressum & Datenschutz</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h4 data-i18n="footer.times_title">Trainingszeiten</h4>
+        <ul>
+          <li data-i18n="footer.times_monday">Montag: 18:00 - 19:30</li>
+          <li data-i18n="footer.times_friday_questions">Freitag: 16:00 - 17:00 Vertiefung</li>
+          <li data-i18n="footer.times_friday_training">Freitag: 17:00 - 18:30 Training</li>
+          <li data-i18n="footer.times_saturday">Samstag: 10:00 - 12:00 Waffen in ungeraden Wochen</li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h4 data-i18n="footer.contact_title">Kontakt</h4>
+        <ul>
+          <li><a href="mailto:dojo@aikido-hochburg-ach.at">dojo@aikido-hochburg-ach.at</a></li>
+          <li><a href="tel:+436504600020">+43 650 4600020</a></li>
+          <li data-i18n="footer.address_line1">Athaler Straße 1</li>
+          <li data-i18n="footer.address_line2">5122 Duttendorf</li>
+        </ul>
+
+        <div class="footer-social">
+          <a href="mailto:dojo@aikido-hochburg-ach.at" aria-label="E-Mail">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1 .9-2 2-2z" />
+              <polyline points="22,6 12,13 2,6" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p data-i18n="footer.copyright" data-i18n-attr="data-year:footer.year" data-year={currentYear}>
+      © {currentYear} Wanomichi Takemusu Aikido Hochburg-Ach
+    </p>
+    <p class="footer-tagline" data-i18n="footer.tagline">Aikido - der Weg der Harmonie | 合気道</p>
+  </div>
+</footer>
+
+<style>
+.footer-social {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.footer-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 50%;
+  background: var(--color-surface);
+  color: var(--color-primary);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.footer-social a:hover {
+  background: var(--color-button-primary);
+  color: var(--color-button-text);
+  transform: translateY(-2px);
+}
+</style>

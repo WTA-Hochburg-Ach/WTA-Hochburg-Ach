@@ -1,0 +1,273 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const baseUrl = import.meta.env.BASE_URL || '/';
+const allNews = await getCollection('news');
+
+const today = new Date();
+today.setHours(0, 0, 0, 0);
+
+const cutoffDate = new Date(today);
+cutoffDate.setDate(cutoffDate.getDate() - 7);
+
+const visibleNews = allNews
+  .filter((item) => new Date(item.data.date) >= cutoffDate)
+  .sort((a, b) => new Date(a.data.date).getTime() - new Date(b.data.date).getTime());
+
+const archivedNews = allNews
+  .filter((item) => new Date(item.data.date) < cutoffDate)
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+
+const escapeForJs = (value: string) => value.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+---
+
+<BaseLayout title="Aktuelles">
+  <section class="content-block-spacious news-page-intro">
+    <h1 data-i18n="news.title">Aktuelles und Termine</h1>
+    <p class="lead-text" data-i18n="news.intro_lead">Derzeit finden alle Trainings statt.</p>
+    <p data-i18n="news.intro_copy">Die Timeline beginnt beim heutigen Tag. Einträge, die mehr als sieben Tage zurückliegen, wandern automatisch in das Archiv.</p>
+  </section>
+
+  <section class="content-block-spacious">
+    <h2 data-i18n="news.timeline_title">Timeline</h2>
+    {visibleNews.length === 0 ? (
+      <div class="no-news-placeholder timeline-placeholder">
+        <h3 data-i18n="news.current_empty_title">Zurzeit gibt es keine aktuellen Einträge.</h3>
+        <p data-i18n="news.current_empty_text">Sobald neue Termine oder Hinweise veröffentlicht werden, erscheinen sie hier.</p>
+      </div>
+    ) : (
+      <div class="horizontal-timeline future-events news-rail">
+        {visibleNews.map((item) => (
+          item.data.display === 'page' ? (
+            <a class="timeline-event news-card news-card-link" href={`${baseUrl}news/${item.slug}/`}>
+              <div class="news-card-tags">
+                <span class="event-date">
+                  {new Date(item.data.date).toLocaleDateString('de-DE', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  })}
+                </span>
+                <span class="news-mode-tag" data-i18n="news.tag_page">Seite</span>
+              </div>
+              <h3>{item.data.title}</h3>
+              <p>{item.data.preview || `${item.body.slice(0, 150)}...`}</p>
+              <span class="read-more-btn" data-i18n="news.read_page">Zur Seite</span>
+            </a>
+          ) : (
+            <button
+              class="timeline-event news-card news-card-button"
+              type="button"
+              onclick={`openNewsModal('${escapeForJs(item.slug)}', '${escapeForJs(item.data.title)}', '${item.data.date.toISOString()}', '${item.data.modalSize}')`}
+            >
+              <div class="news-card-tags">
+                <span class="event-date">
+                  {new Date(item.data.date).toLocaleDateString('de-DE', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  })}
+                </span>
+                <span class="news-mode-tag" data-i18n="news.tag_modal">Popup</span>
+                {item.data.modalSize === 'wide' && <span class="news-size-tag" data-i18n="news.tag_large">Groß</span>}
+              </div>
+              <h3>{item.data.title}</h3>
+              <p>{item.data.preview || `${item.body.slice(0, 150)}...`}</p>
+              <span class="read-more-btn" data-i18n="news.read_modal">Im Popup lesen</span>
+            </button>
+          )
+        ))}
+      </div>
+    )}
+  </section>
+
+  <section class="content-block-spacious">
+    <h2 data-i18n="news.archive_title">Vergangene Termine und Galerie</h2>
+    {archivedNews.length === 0 ? (
+      <div class="no-news-placeholder archive-placeholder">
+        <h3 data-i18n="news.archive_empty_title">Noch keine archivierten Einträge.</h3>
+        <p data-i18n="news.archive_empty_text">Vergangene Termine und Rückblicke erscheinen hier, sobald sie älter als sieben Tage sind.</p>
+      </div>
+    ) : (
+      <div class="feature-grid archive-grid">
+        {archivedNews.map((item) => (
+          item.data.display === 'page' ? (
+            <a class="feature-card news-card archive-card news-card-link" href={`${baseUrl}news/${item.slug}/`}>
+              <div class="news-card-tags">
+                <span class="event-date">
+                  {new Date(item.data.date).toLocaleDateString('de-DE', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  })}
+                </span>
+                <span class="news-mode-tag" data-i18n="news.tag_page">Seite</span>
+              </div>
+              <h3>{item.data.title}</h3>
+              <p>{item.data.preview || `${item.body.slice(0, 150)}...`}</p>
+              <span class="read-more-btn" data-i18n="news.read_page">Zur Seite</span>
+            </a>
+          ) : (
+            <button
+              class="feature-card news-card archive-card news-card-button"
+              type="button"
+              onclick={`openNewsModal('${escapeForJs(item.slug)}', '${escapeForJs(item.data.title)}', '${item.data.date.toISOString()}', '${item.data.modalSize}')`}
+            >
+              <div class="news-card-tags">
+                <span class="event-date">
+                  {new Date(item.data.date).toLocaleDateString('de-DE', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  })}
+                </span>
+                <span class="news-mode-tag" data-i18n="news.tag_modal">Popup</span>
+                {item.data.modalSize === 'wide' && <span class="news-size-tag" data-i18n="news.tag_large">Groß</span>}
+              </div>
+              <h3>{item.data.title}</h3>
+              <p>{item.data.preview || `${item.body.slice(0, 150)}...`}</p>
+              <span class="read-more-btn" data-i18n="news.read_modal">Im Popup lesen</span>
+            </button>
+          )
+        ))}
+      </div>
+    )}
+    <p class="archive-note" data-i18n-html="news.archive_note">
+      Weitere Bilder können ergänzend auf der Seite <a href="/foto-galerie">Galerie</a> gepflegt werden.
+    </p>
+  </section>
+
+  <div id="news-modal" class="modal">
+    <div class="modal-backdrop" onclick="closeNewsModal()"></div>
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeNewsModal()">&amp;times;</button>
+      <div class="modal-header">
+        <h2 id="modal-title"></h2>
+        <span id="modal-date"></span>
+      </div>
+      <div class="modal-body" id="modal-body">
+        <div class="loader" data-i18n="news.loading">Laden...</div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<script is:inline define:vars={{ baseUrl }}>
+async function openNewsModal(slug, title, dateStr, modalSize) {
+  const titleEl = document.getElementById('modal-title');
+  const dateEl = document.getElementById('modal-date');
+  const modal = document.getElementById('news-modal');
+  const modalBody = document.getElementById('modal-body');
+  const modalContent = modal?.querySelector('.modal-content');
+
+  titleEl.textContent = title;
+  dateEl.textContent = new Date(dateStr).toLocaleDateString('de-DE', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+
+  modalContent?.classList.toggle('modal-wide', modalSize === 'wide');
+  modalBody.classList.remove('content-visible');
+  modalBody.innerHTML = `<div class="loader">${window.i18n?.t('news.loading', 'Laden...') ?? 'Laden...'}</div>`;
+  modal.classList.add('show');
+  document.body.style.overflow = 'hidden';
+
+  try {
+    const response = await fetch(`${baseUrl}news/${slug}.json`);
+    const news = await response.json();
+    modalBody.innerHTML = `<div class="prose-lg">${news.content}</div>`;
+    setTimeout(() => modalBody.classList.add('content-visible'), 150);
+  } catch (error) {
+    console.error('Error loading news:', error);
+    modalBody.innerHTML = `<p>${window.i18n?.t('news.load_error', 'Der Inhalt konnte gerade nicht geladen werden.') ?? 'Der Inhalt konnte gerade nicht geladen werden.'}</p>`;
+    modalBody.classList.add('content-visible');
+  }
+}
+
+function closeNewsModal() {
+  const modal = document.getElementById('news-modal');
+  const modalBody = document.getElementById('modal-body');
+  const modalContent = modal?.querySelector('.modal-content');
+  modal.classList.remove('show');
+  modalBody.classList.remove('content-visible');
+  modalContent?.classList.remove('modal-wide');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') closeNewsModal();
+});
+</script>
+
+<style>
+.news-page-intro {
+  padding-bottom: 0;
+}
+
+.news-card-link,
+.news-card-button {
+  width: 100%;
+  text-align: left;
+  text-decoration: none;
+  color: inherit;
+}
+
+.news-card-button {
+  font: inherit;
+  border: 1px solid var(--color-border-light);
+  background: var(--color-surface);
+}
+
+.news-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.news-mode-tag,
+.news-size-tag {
+  display: inline-flex;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(211, 161, 63, 0.15);
+  color: var(--color-primary-dark);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.news-rail .timeline-event h3,
+.archive-card h3 {
+  margin-bottom: 0.75rem;
+}
+
+.news-rail .timeline-event p,
+.archive-card p {
+  min-height: 4.5rem;
+}
+
+.archive-grid {
+  align-items: stretch;
+}
+
+.timeline-placeholder,
+.archive-placeholder {
+  background: var(--color-bg-secondary);
+  border-radius: 12px;
+}
+
+.archive-note {
+  margin-top: 1.5rem;
+  text-align: center;
+  color: var(--color-text-secondary);
+}
+
+.archive-note a {
+  color: var(--color-primary);
+}
+</style>
