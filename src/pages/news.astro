@@ -1,12 +1,25 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
-import { formatDateRange, isEvent, sortByDateAscending, sortByDateDescending } from '../lib/news';
+import { formatDateRange, isEvent, isNews, sortByDateAscending, sortByDateDescending } from '../lib/news';
 
 const baseUrl = import.meta.env.BASE_URL || '/';
 const withBase = (path = '') => `${baseUrl}${path}`;
-const allEntries = sortByDateDescending(await getCollection('news'));
-const featuredEvents = sortByDateAscending(allEntries.filter(isEvent)).slice(0, 3);
+const entries = await getCollection('news');
+const allEntries = sortByDateAscending(entries);
+const newestEntries = sortByDateDescending(entries);
+const today = new Date();
+today.setHours(23, 59, 59, 999);
+const startOfToday = new Date(today);
+startOfToday.setHours(0, 0, 0, 0);
+const featuredEvents = sortByDateAscending(entries.filter((item) => isEvent(item) && item.data.date.getTime() >= startOfToday.getTime())).slice(0, 3);
+const sevenDaysAgo = new Date(today);
+sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+sevenDaysAgo.setHours(0, 0, 0, 0);
+const recentNews = newestEntries.filter((item) => {
+  const itemDate = item.data.date.getTime();
+  return isNews(item) && itemDate >= sevenDaysAgo.getTime() && itemDate <= today.getTime();
+});
 ---
 
 <BaseLayout title="Aktuelles & Termine">
@@ -14,6 +27,24 @@ const featuredEvents = sortByDateAscending(allEntries.filter(isEvent)).slice(0, 
     <h1>Aktuelles & Termine</h1>
     <p class="lead-text">Kurze Neuigkeiten, kommende Lehrgaenge und die gesamte Chronik findest du hier in einer gemeinsamen Uebersicht.</p>
     <p>Alle Eintraege sind chronologisch nach Datum geordnet. Termine fuehren zu ihrer Ausschreibung oder zu einer Detailseite, kurze News bleiben kompakt und schnell lesbar.</p>
+  </section>
+
+  <section class="content-block-spacious">
+    <h2>Kurzmeldungen</h2>
+    {recentNews.length > 0 ? (
+      <div class="feature-grid featured-event-grid">
+        {recentNews.map((item) => (
+          <article class:list={['feature-card', 'featured-event-card', `tone-${item.data.color}`]}>
+            <span class="event-date">{formatDateRange(item.data.date, item.data.endDate)}</span>
+            <h3>{item.data.title}</h3>
+            <p>{item.data.preview}</p>
+            <a class="read-more-btn" href={withBase(`news/${item.slug}`)}>Weiter lesen</a>
+          </article>
+        ))}
+      </div>
+    ) : (
+      <p class="archive-note">Aktuell gibt es keine Kurzmeldung aus den letzten sieben Tagen. Aeltere Beitraege stehen unten in der Chronik.</p>
+    )}
   </section>
 
   {featuredEvents.length > 0 && (
@@ -79,6 +110,10 @@ const featuredEvents = sortByDateAscending(allEntries.filter(isEvent)).slice(0, 
 .chronicle-list {
   display: grid;
   gap: 1rem;
+}
+
+.archive-note {
+  text-align: center;
 }
 
 .chronicle-card {

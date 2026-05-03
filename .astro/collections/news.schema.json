@@ -27,6 +27,15 @@
     "location": {
       "type": "string"
     },
+    "time": {
+      "type": "string"
+    },
+    "people": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
     "display": {
       "default": "page",
       "type": "string",

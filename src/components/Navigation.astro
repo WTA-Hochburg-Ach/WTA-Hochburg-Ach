@@ -10,6 +10,7 @@ const fallbackLabels = {
   'nav.events': 'Termine',
   'nav.news': 'Aktuelles',
   'nav.gallery': 'Galerie',
+  'nav.links': 'Links',
   'nav.contact': 'Kontakt',
 };
 ---
@@ -85,14 +86,25 @@ const fallbackLabels = {
     <ul class="nav-links">
       {navItems.map((item) => (
         <li class="nav-item">
-          <a href={withBase(item.href)} class="nav-link">
-            <span class="nav-link-label" data-i18n={item.labelKey}>
-              {fallbackLabels[item.labelKey]}
+          {item.disabled ? (
+            <span class="nav-link nav-link-disabled" aria-disabled="true">
+              <span class="nav-link-label" data-i18n={item.labelKey}>
+                {fallbackLabels[item.labelKey]}
+              </span>
+              <span class="nav-link-hint" data-i18n={item.summaryKey}>
+                {item.summary}
+              </span>
             </span>
-            <span class="nav-link-hint" data-i18n={item.summaryKey}>
-              {item.summary}
-            </span>
-          </a>
+          ) : (
+            <a href={withBase(item.href)} class="nav-link">
+              <span class="nav-link-label" data-i18n={item.labelKey}>
+                {fallbackLabels[item.labelKey]}
+              </span>
+              <span class="nav-link-hint" data-i18n={item.summaryKey}>
+                {item.summary}
+              </span>
+            </a>
+          )}
           <div class="nav-flyout">
             <p data-i18n={item.summaryKey}>{item.summary}</p>
           </div>

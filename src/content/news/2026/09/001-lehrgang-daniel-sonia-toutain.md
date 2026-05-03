@@ -5,6 +5,10 @@ endDate: 2026-09-13
 preview: Zweitaegiger Lehrgang in Hochburg-Ach am 12. und 13. September 2026.
 type: event
 location: Mehrzweckhalle der neuen Mittelschule, Duttendorf
+time: siehe Ausschreibung
+people:
+  - Daniel Toutain
+  - Sonia Toutain
 display: modal
 color: moss
 pdfs:

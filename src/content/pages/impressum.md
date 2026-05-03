@@ -29,7 +29,7 @@ order: 99
 ## Datenschutz
 
 <div class="legal-section">
-  <p><em>Folgt noch.</em></p>
+  <p>Diese Webseite dient der Information ueber den Verein. Bei einer Kontaktaufnahme per E-Mail oder Telefon werden die uebermittelten Angaben ausschliesslich zur Bearbeitung der Anfrage verwendet.</p>
 </div>
 
 ## Ansprechpartner

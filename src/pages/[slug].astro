@@ -15,6 +15,11 @@ export async function getStaticPaths() {
 
 const { slug } = Astro.params;
 const page = await getEntry('pages', slug);
+
+if (!page) {
+  throw new Error(`Page not found: ${slug}`);
+}
+
 const { Content } = await render(page);
 ---
 

@@ -3,8 +3,6 @@ import {
   contactData,
   footerLinks,
   footerSocialLinks,
-  partnerLinks,
-  trainingSchedule,
   venue,
 } from '../data/site';
 
@@ -46,27 +44,6 @@ const footerLabelFallbacks = {
       ))}
 
       <div class="footer-section">
-        <h4 data-i18n="footer.times_title">Trainingszeiten</h4>
-        <ul>
-          {trainingSchedule.map((item, index) => (
-            <li
-              data-i18n={
-                index === 0
-                  ? 'footer.times_monday'
-                  : index === 1
-                    ? 'footer.times_friday_questions'
-                    : index === 2
-                      ? 'footer.times_friday_training'
-                      : 'footer.times_saturday'
-              }
-            >
-              {item.day}: {item.time} {item.label}
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <div class="footer-section">
         <h4 data-i18n="footer.contact_title">Kontakt</h4>
         <ul>
           <li><a href={`mailto:${contactData.email}`}>{contactData.email}</a></li>
@@ -106,6 +83,12 @@ const footerLabelFallbacks = {
                   <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
                 </svg>
               )}
+              {item.icon === 'lucide:map-pin' && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24">
+                  <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0z"/>
+                  <circle cx="12" cy="10" r="3"/>
+                </svg>
+              )}
             </a>
           ))}
         </div>
@@ -116,7 +99,7 @@ const footerLabelFallbacks = {
   <img src={`${baseUrl}assets/brush.svg`} alt="" class="footer-brush" />
 
   <div class="footer-bottom">
-    <p data-i18n="footer.copyright" data-i18n-attr="data-year:footer.year" data-year={currentYear}>
+    <p data-i18n="footer.copyright" data-year={currentYear}>
       © {currentYear} Wanomichi Takemusu Aikido Hochburg-Ach
     </p>
     <p class="footer-tagline" data-i18n="footer.tagline">Aikido - der Weg der Harmonie</p>

@@ -5,6 +5,10 @@ endDate: 2026-09-18
 preview: Ushi Deshi in Birach vom 14. bis 18. September 2026.
 type: event
 location: Birach
+time: siehe Ausschreibung
+people:
+  - Daniel Toutain
+  - Sonia Toutain
 display: page
 color: gold
 pdfs:

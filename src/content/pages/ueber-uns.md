@@ -15,18 +15,24 @@ order: 4
 </section>
 
 <section class="content-block-spacious">
+  <h2>Probetraining</h2>
+  <p>Ein Probetraining ist nach kurzer Anmeldung am Trainingsort in Duttendorf moeglich.</p>
+  <p>Bitte nimm vorher Kontakt mit uns auf, damit wir dich gut empfangen koennen. Fuer das erste Training reichen lange Sportbekleidung oder ein Trainingsanzug sowie Hausschuhe; trainiert wird barfuss oder in rutschfesten Socken.</p>
+  <p><a href="/kontakt" class="button button-primary">Kontakt aufnehmen</a></p>
+</section>
+
+<section class="content-block-spacious">
   <h2>Trainer</h2>
   <div class="feature-grid">
     <div class="feature-card">
       <h3>Christian Dostal</h3>
       <p><strong>3. Dan Wanomichi Takemusu Aiki</strong></p>
-      <p>Christian hat seine Aikido-Laufbahn 2004 in Steyr begonnen. Weitere Informationen folgen.</p>
-      <p><em>Foto folgt.</em></p>
+      <p>Christian hat seine Aikido-Laufbahn 2004 in Steyr begonnen und begleitet das Training in Hochburg-Ach mit ruhiger, praeziser Arbeit an Grundlagen, Haltung und Verbindung.</p>
     </div>
   </div>
 </section>
 
 <section class="content-block-spacious">
   <h2>Etikette</h2>
-  <p><em>Folgt noch.</em></p>
+  <p>Wir trainieren aufmerksam, respektvoll und ohne Leistungsdruck. Vor dem Betreten der Matte gruessen wir kurz an, Schmuck wird abgelegt und Fragen sind jederzeit willkommen.</p>
 </section>

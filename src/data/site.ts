@@ -13,6 +13,7 @@ export const siteLinks = {
   events: 'termine',
   news: 'news',
   gallery: 'foto-galerie',
+  links: 'links',
   contact: 'kontakt',
   legal: 'impressum',
 };
@@ -49,6 +50,13 @@ export const navItems = [
     summary: 'Bilder, Rueckblicke und Impressionen aus dem Dojo.',
   },
   {
+    href: siteLinks.links,
+    labelKey: 'nav.links',
+    summaryKey: 'nav.links_summary',
+    summary: 'Externe Links und Netzwerk. Wird noch ergaenzt.',
+    disabled: true,
+  },
+  {
     href: siteLinks.contact,
     labelKey: 'nav.contact',
     summaryKey: 'nav.contact_summary',
@@ -74,11 +82,11 @@ export const contactData = {
   },
   socialinstagram: {
     href: 'https://www.instagram.com/aikido.hochburg.ach/',
-      label: 'Instagram',
+    label: 'Instagram',
   },
   socialfacebook: {
     href: 'https://www.facebook.com/aikido.hochburg.ach/',
-      label: 'Facebook',
+    label: 'Facebook',
   },
 };
 

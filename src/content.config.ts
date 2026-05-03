@@ -2,8 +2,8 @@ import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
 const pages = defineCollection({
-  loader: glob({ 
-    pattern: '*.md', 
+  loader: glob({
+    pattern: '*.md',
     base: 'src/content/pages',
     transform: (data) => ({ ...data, slug: data.id.replace(/\.md$/, '') })
   }),
@@ -14,8 +14,8 @@ const pages = defineCollection({
 });
 
 const news = defineCollection({
-  loader: glob({ 
-    pattern: '**/*.md', 
+  loader: glob({
+    pattern: '**/*.md',
     base: 'src/content/news',
     transform: (data) => ({ ...data, slug: data.id.replace(/\.md$/, '') })
   }),
@@ -26,6 +26,8 @@ const news = defineCollection({
     preview: z.string().optional(),
     type: z.enum(['news', 'event']).default('news'),
     location: z.string().optional(),
+    time: z.string().optional(),
+    people: z.array(z.string()).optional(),
     display: z.enum(['modal', 'page']).default('page'),
     color: z.enum(['moss', 'sage', 'gold']).default('moss'),
     pdfs: z

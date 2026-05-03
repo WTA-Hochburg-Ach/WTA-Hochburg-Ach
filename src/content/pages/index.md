@@ -4,6 +4,8 @@ order: 1
 ---
 
 <section class="hero hero-home">
+  <div class="hero-kanji" aria-hidden="true">合気道</div>
+
   <div class="hero-content">
     <h1>Wanomichi Takemusu<br />Aikido<br />Hochburg-Ach</h1>
     <p>Traditionelles Aikido in Duttendorf - offen fuer Einsteiger:innen und Fortgeschrittene.</p>
@@ -34,12 +36,11 @@ order: 1
 
 <section class="content-block-spacious">
   <h2>Was ist Aikido?</h2>
-  <p class="lead-text">Dies ist eine sehr schwierige Frage, die auch erfahrene Aikidoka nicht so ohne weiteres beantworten können. 
-  <p>Aikido ist eine japanische Kampfkunst, deren Körpertechniken auf den Schulen des Yagyu-ryū und Daitō-ryū Jūjutsu basieren, wobei der Tötungsgedanke herausgenommen wurde. 
-  <p>Die Angriffe werden durch Kreisbewegungen umgelenkt anstelle sich ihnen direkt entgegenzustellen und auf Konfrontation zu gehen. Zudem beinhaltet das Körper-Technik-Programm (taijutsu) auch viele Verhebelungen. Dies ermöglicht es, körperlich überlegene Gegner zu kontrollieren. 
-  <p>Ziel ist es, dass weder dem Angreifer (uke, der Gebende), noch dem Angegriffenen (nage, der Empfangende) Schaden entsteht. 
-  <p>Abgerundet wird das Training, das der Lehre von Saito Morihiro Sensei folgt, durch das Waffentraining (buki waza). Indem man den Umgang mit dem Holzschwert (ken) im Aikiken, dem Holzstab (jo) im Aikijo und dem Holzmesser (tanto) erlernt, lernt man seinen Körper besser kennen. 
-</p>
+  <p class="lead-text">Dies ist eine sehr schwierige Frage, die auch erfahrene Aikidoka nicht so ohne weiteres beantworten können.</p>
+  <p>Aikido ist eine japanische Kampfkunst, deren Körpertechniken auf den Schulen des Yagyu-ryū und Daitō-ryū Jūjutsu basieren, wobei der Tötungsgedanke herausgenommen wurde.</p>
+  <p>Die Angriffe werden durch Kreisbewegungen umgelenkt, anstatt sich ihnen direkt entgegenzustellen. Zudem beinhaltet das Körper-Technik-Programm (taijutsu) viele Verhebelungen. Dies ermöglicht es, körperlich überlegene Gegner zu kontrollieren.</p>
+  <p>Ziel ist es, dass weder dem Angreifer (uke, der Gebende), noch dem Angegriffenen (nage, der Empfangende) Schaden entsteht.</p>
+  <p>Abgerundet wird das Training, das der Lehre von Saito Morihiro Sensei folgt, durch das Waffentraining (buki waza). Im Umgang mit Holzschwert (ken), Holzstab (jo) und Holzmesser (tanto) lernt man seinen Körper besser kennen.</p>
 </section>
 
 <section class="suitability-section">
@@ -71,8 +72,8 @@ order: 1
     <div class="suitability-item">
       <span class="suitability-icon">Tradition</span>
       <div>
-        <h3>Japanische Kultur</h3>
-        <p>Spannend fuer Menschen mit Interesse an Philosophie, Dojo-Etikette und Tradition.</p>
+        <h3>Dojo-Kultur</h3>
+        <p>Spannend fuer Menschen mit Interesse an Philosophie, Etikette und Tradition.</p>
       </div>
     </div>
   </div>
@@ -81,7 +82,7 @@ order: 1
 <section class="cta-section">
   <div class="cta-box">
     <h2>Neugierig geworden?</h2>
-    <p>Wenn du ein Probetraining machen moechtest, melde dich kurz bei uns. Trainingsort und Zeiten findest du auf der Seite Ueber uns.</p>
+    <p>Wenn du ein Probetraining machen moechtest, melde dich kurz bei uns. Trainingsort und erste Hinweise findest du auf der Seite Ueber uns.</p>
     <div class="cta-buttons">
       <a href="/ueber-uns" class="button button-primary">Zum Trainingsort</a>
       <a href="/kontakt" class="button button-outline">Kontakt</a>

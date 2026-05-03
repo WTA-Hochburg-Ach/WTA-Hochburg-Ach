@@ -1,5 +1,5 @@
 import { experimental_AstroContainer as AstroContainer } from 'astro/container';
-import { getCollection, type CollectionEntry } from 'astro:content';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
 
 type NewsEntryProps = {
   entry: CollectionEntry<'news'>;
@@ -14,26 +14,28 @@ export async function getStaticPaths() {
   }));
 }
 
-// export async function GET({ props }: { props: NewsEntryProps }) {
-//   const { entry } = props;
-//   const { Content } = await entry.render();
-//   const container = await AstroContainer.create();
-//   const content = await container.renderToString(Content);
+export async function GET({ props }: { props: NewsEntryProps }) {
+  const { entry } = props;
+  const { Content } = await render(entry);
+  const container = await AstroContainer.create();
+  const content = await container.renderToString(Content);
 
-//   return new Response(
-//     JSON.stringify({
-//       title: entry.data.title,
-//       date: entry.data.date,
-//       endDate: entry.data.endDate,
-//       location: entry.data.location,
-//       type: entry.data.type,
-//       pdfs: entry.data.pdfs,
-//       content,
-//     }),
-//     {
-//       headers: {
-//         'Content-Type': 'application/json; charset=utf-8',
-//       },
-//     },
-//   );
-// }
+  return new Response(
+    JSON.stringify({
+      title: entry.data.title,
+      date: entry.data.date,
+      endDate: entry.data.endDate,
+      time: entry.data.time,
+      location: entry.data.location,
+      people: entry.data.people,
+      type: entry.data.type,
+      pdfs: entry.data.pdfs,
+      content,
+    }),
+    {
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+      },
+    },
+  );
+}

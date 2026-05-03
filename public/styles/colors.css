@@ -6,17 +6,17 @@
   --font-serif: 'Cormorant Garamond', 'Times New Roman', serif;
   --font-brush: 'Cormorant Garamond', serif;
 
-  --color-primary: #365842;
-  --color-primary-light: #5e7e66;
-  --color-primary-dark: #1d3425;
+  --color-primary: #31563e;
+  --color-primary-light: #78926f;
+  --color-primary-dark: #182f20;
   --color-accent: #bca270;
   --color-accent-light: #d0b991;
   --color-accent-dark: #8f7448;
 
-  --color-bg-body: #eff2eb;
-  --color-bg-primary: #f8faf5;
-  --color-bg-secondary: #eef2e8;
-  --color-bg-tertiary: #dde6d9;
+  --color-bg-body: #eef3ea;
+  --color-bg-primary: #fbfcf8;
+  --color-bg-secondary: #edf4e8;
+  --color-bg-tertiary: #dbe8d5;
   --color-surface: rgba(251, 252, 248, 0.95);
   --color-surface-strong: #ffffff;
   --color-surface-muted: rgba(255, 255, 255, 0.74);
@@ -38,8 +38,8 @@
   --color-timeline-dot: #365842;
   --color-timeline-bg: rgba(251, 252, 248, 0.95);
 
-  --color-button-primary: #56704f;
-  --color-button-hover: #678260;
+  --color-button-primary: #3f673f;
+  --color-button-hover: #547c4f;
   --color-button-text: #f8fbf6;
   --color-link: #3c6247;
   --color-link-hover: #21392a;
@@ -51,8 +51,8 @@
   --color-footer-bg: rgba(228, 235, 225, 0.78);
   --color-footer-border: rgba(53, 88, 66, 0.14);
 
-  --gradient-body: radial-gradient(circle at top, rgba(188, 162, 112, 0.08), transparent 30%), linear-gradient(180deg, #f7faf4 0%, #edf2e8 100%);
-  --gradient-hero: linear-gradient(135deg, #223a29 0%, #476652 48%, #93a182 100%);
+  --gradient-body: radial-gradient(circle at top, rgba(188, 162, 112, 0.08), transparent 30%), linear-gradient(180deg, #fbfcf8 0%, #eef4e9 100%);
+  --gradient-hero: linear-gradient(135deg, #172c1f 0%, #31563e 48%, #7f966f 100%);
   --gradient-card: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(246, 249, 243, 0.98));
   --overlay-strong: rgba(12, 20, 18, 0.72);
 }
